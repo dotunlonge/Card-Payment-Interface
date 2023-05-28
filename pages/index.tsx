@@ -286,6 +286,7 @@ const Home: NextPage = () => {
                 className="xs-12"
                 id="password"
                 value={password}
+                maxLength={20}
                 onChange={(e) => setPassword(e.target.value)}
                 />
                 <img src="/dial.png" alt='dial' className="dial" />
