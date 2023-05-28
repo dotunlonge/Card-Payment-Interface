@@ -45,7 +45,7 @@ const Home: NextPage = () => {
    'input-4': '',
  });
  const [cvvNumber, setCvvNumber] = useState<string>('327');
- const [expiryMonth, setExpiryMonth] = useState<number | string>('10');
+ const [expiryMonth, setExpiryMonth] = useState<number | string>('09');
  const [expiryYear, setExpiryYear] = useState<number | string>('22');
  const [password, setPassword] = useState<string>('');
 
@@ -314,7 +314,7 @@ const Home: NextPage = () => {
                 </div>
 
                 <div className="bottom">
-                 <p>{expiryMonth.padStart(2, '0')}/{expiryYear.padStart(2, '0')}</p>
+                 <p>{expiryMonth}/{expiryYear}</p>
                  <img src={`/${cardType}.png`} alt="cardtype" />
                </div>
 
