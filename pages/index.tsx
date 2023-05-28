@@ -36,7 +36,7 @@ const TimeDisplay: React.FC = () => {
 
 const Home: NextPage = () => {
 
-  const [cardType, setCardType] = useState<string>('credit-card');
+ const [cardType, setCardType] = useState<string>('credit-card');
  const inputRefs = useRef<Array<HTMLInputElement | null>>([]);
  const [cardNumber, setCardNumber] = useState<{ [key: string]: string }>({
    'input-1': '',
@@ -45,8 +45,8 @@ const Home: NextPage = () => {
    'input-4': '',
  });
  const [cvvNumber, setCvvNumber] = useState<string>('327');
- const [expiryMonth, setExpiryMonth] = useState<string>('09');
- const [expiryYear, setExpiryYear] = useState<string>('22');
+ const [expiryMonth, setExpiryMonth] = useState<number | string>('09');
+ const [expiryYear, setExpiryYear] = useState<number | string>('22');
  const [password, setPassword] = useState<string>('');
 
  // Function to detect the card type based on the input
@@ -124,20 +124,17 @@ const Home: NextPage = () => {
   };
 
   const handleCVVNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
     const input = e.target.value.slice(0, 3); // Limit the input to the maximum card cvv number length
     setCvvNumber(input);
   };
 
   const handleMonthChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const input = e.target.value.slice(0, 2); // Limit the input to the maximum card month number length
+    const input = e.target.value.slice(0, 2);
     setExpiryMonth(input.toString().padStart(2, '0'));
   };
 
   const handleYearChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const input = e.target.value.slice(0, 2); // Limit the input to the maximum card year number length
+    const input = e.target.value.slice(0, 2);
     setExpiryYear(input.toString().padStart(2, '0'));
   };
 
@@ -261,15 +258,17 @@ const Home: NextPage = () => {
                   min={1}
                   value={expiryMonth.toString()}
                   onChange={handleMonthChange}
+                  id="month"
                 />
                 <span className="xs-2 t-c">/</span>
                 <input
                   type="number"
-                  placeholder={expiryYear}
+                  placeholder={"22"}
                   className="xs-5"
                   min={1}
                   value={expiryYear.toString()}
                   onChange={handleYearChange}
+                  id="year"
                 />
               </div>
             </div>
