@@ -47,7 +47,7 @@ const Home: NextPage = () => {
  const [cvvNumber, setCvvNumber] = useState<string>('327');
  const [expiryMonth, setExpiryMonth] = useState<number | string>('09');
  const [expiryYear, setExpiryYear] = useState<number | string>('22');
- const [password, setPassword] = useState<string>('');
+ const [password, setPassword] = useState<string>('"●●●●●●●●"');
 
  // Function to detect the card type based on the input
  const detectCardType = (input: string) => {
@@ -278,16 +278,15 @@ const Home: NextPage = () => {
               </div>
 
               <div className="xs-12 md-6 with-dial">
-              <input
-                type="password"
-                placeholder={"●●●●●●●●"}
-                className="xs-12"
-                id="password"
-                name="password"
-                value={password}
-                maxLength={16}
-                autoComplete="current-password"
-                onChange={(e) => setPassword(e.target.value)}
+                <input
+                  type="password"
+                  className="xs-12"
+                  id="password"
+                  name="password"
+                  value={password}
+                  maxLength={16}
+                  autoComplete="current-password"
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <img src="/dial.png" alt='dial' className="dial" />
               </div>
