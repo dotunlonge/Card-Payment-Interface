@@ -127,7 +127,8 @@ input{
 
   &:active, &:focus{
     outline: none;
-    border: 2px solid #2567da;
+    border: 2.5px solid #2567da;
+    color: #246be1;
   }
 
 }
@@ -180,6 +181,10 @@ label{
   background: #015ffe;
   border: 0;
   cursor: pointer;
+  transition: 300ms;
+  &:hover{
+    background: #1d2a54;
+  }
 }
 
 .right{
@@ -385,8 +390,36 @@ label{
   position: relative;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
+.with-correct{
+  height: 3.5em;
+  border: 1px solid #eeedf0;
+  background: white;
+  border-radius: 7px;
+  padding: 0em 1em;
+  font-size: 20px;
+  letter-spacing: 3px;
+  font-weight: bold;
+  text-align: center;
+  color: #232d4b;
+  .card-image{height: 1.75em;}
+  .fields{
+    display: flex;
+    align-items: center;
     justify-content: center;
     flex-direction: row;
+    input{
+      padding: 0 0.25em;
+      border: 0;
+      height: 95%;
+      &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: gray;
+      }
+    }
+  }
 }
 
 .dial, .correct {
