@@ -20,7 +20,7 @@ const TimeDisplay: React.FC = () => {
   }, []);
 
   return (
-    <div className='xs-12 md-6'>
+    <div className='xs-6'>
       <div className="f-r">
         <p className="time">
           <span>{time[0]}</span>
@@ -137,7 +137,7 @@ const Home: NextPage = () => {
       <main className="xs-12">
         <div className="xs-12 md-8">
 
-          <div className='xs-12 md-6'>
+          <div className='xs-6'>
             <div className="f-l logo-part">
               <img src="/logo.png" alt="logo" id="logo"/><h2>AceCoinPay</h2>
             </div>
@@ -148,7 +148,7 @@ const Home: NextPage = () => {
           <form onSubmit={handlePayment}>
 
             <div className='credit-card xs-12'>
-              <div className='c-n'>
+              <div className='c-n xs-8'>
                 <label htmlFor="cardNumber">Card Number</label>
                 <span>Enter the 16-digit card number on the card</span>
               </div>
@@ -159,10 +159,10 @@ const Home: NextPage = () => {
             </div>
 
             <div className="form-control xs-12 with-correct">
-              <div className="xs-2 sm-1">
+              <div className="xs-1 sm-1 card-image-holder">
                 <img alt="card" src={`/${cardType}.png`} className="card-image" />
               </div>
-              <div className="xs-9 sm-6 fields">
+              <div className="xs-10 sm-6 fields">
               <input
                 ref={(ref) => (inputRefs.current[0] = ref)}
                 type="number"
