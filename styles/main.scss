@@ -259,6 +259,15 @@ label{
           object-fit: contain;
         }
 
+
+          #reader{
+            transform: rotateX(45deg);
+            object-fit: cover;
+            object-position: center;
+            height: 3.5em;
+          }
+        
+
       }
 
       .card-content{
