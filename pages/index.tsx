@@ -251,7 +251,7 @@ const Home: NextPage = () => {
                   onChange={handleMonthChange}
                   id="month"
                 />
-                <span className="xs-2 t-c">/</span>
+                <span className="xs-2 t-c" id='divider'>/</span>
                 <input
                   type="number"
                   placeholder={"22"}
@@ -314,7 +314,7 @@ const Home: NextPage = () => {
 
                 <div className="bottom">
                  <p>{expiryMonth.padStart(2, '0')}/{expiryYear.padStart(2, '0')}</p>
-                 <img src="/mastercard.png" alt="mastercard" />
+                 <img src={`/${cardType}.png`} alt="cardtype" />
                </div>
 
               </div>
