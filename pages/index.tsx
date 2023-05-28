@@ -228,6 +228,7 @@ const Home: NextPage = () => {
                     maxLength={3}
                     value={cvvNumber.toString()}
                     onChange={handleCVVNumberChange}
+                    autoComplete="cc-number"
                   />
                   <img src="/dial.png" alt='dial' className="dial" />
               </div>
@@ -251,6 +252,7 @@ const Home: NextPage = () => {
                   value={expiryMonth.toString()}
                   onChange={handleMonthChange}
                   id="expiryMonth"
+                  autoComplete="cc-exp-month"
                 />
                 <span className="xs-2 t-c" id='divider'>/</span>
                 <input
@@ -264,6 +266,7 @@ const Home: NextPage = () => {
                   value={expiryYear.toString()}
                   onChange={handleYearChange}
                   id="expiryYear"
+                  autoComplete="cc-exp-year"
                 />
               </div>
             </div>
@@ -283,6 +286,7 @@ const Home: NextPage = () => {
                 name="password"
                 value={password}
                 maxLength={16}
+                autoComplete="current-password"
                 onChange={(e) => setPassword(e.target.value)}
                 />
                 <img src="/dial.png" alt='dial' className="dial" />
