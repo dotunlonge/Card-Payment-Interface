@@ -151,8 +151,19 @@ input{
 
 }
 
-#password{
+#password {
   text-align: left;
+  font-size: 35px;
+  height: 2em;
+}
+
+#password::placeholder {
+  text-align: left;
+  font-size: 24px;
+  align-self: center;
+  align-items: center;
+  flex: 1;
+  display: flex;
 }
 
 label{
@@ -190,7 +201,7 @@ label{
 
 .right{
 
-  height: 100%;
+  min-height: 100%;
 
   .blue{
     height: 7px;
@@ -207,7 +218,7 @@ label{
     background: linear-gradient(180deg, #e1e7eb, #eff5f9);
     float: left;
     border-radius: 1em;
-    height: 92.5%;
+    height: 90%;
     top: 10%;
     width: 100%;
     position: absolute;
@@ -345,6 +356,7 @@ label{
   padding-left: 10%;
   padding-right: 10%;
   margin-top: 1.25em;
+  margin-bottom: 1.25em;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -375,7 +387,7 @@ label{
       color: #8690a6;
     }
     span{
-      font-size: 1.45em;
+      font-size: 1.2em;
       padding-right: 0.2em;
     }
   }
@@ -406,23 +418,44 @@ label{
   font-weight: bold;
   text-align: center;
   color: #232d4b;
-  .card-image{height: 1.75em;}
+
+  &:focus-within {
+    outline: none;
+    border: 2.5px solid #2567da;
+    color: #246be1;
+  }
+
+  .card-image{ height: 1.75em; }
+
   .fields{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: row;
+
     input{
+
       padding: 0 0.25em;
       border: 0;
       height: 95%;
       font-weight: 500;
-    font-size: 1.05em;
-      &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-        color: gray;
+      font-size: 1.05em;
+
+      &:active,&:focus{
+        font-weight: bold !important;
+        color: #1b66e4;
       }
+
+      &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: #b5bbd0;
+      }
+
     }
   }
+}
+
+input:focus-visible{
+  outline: none;
 }
 
 .dial, .correct {
