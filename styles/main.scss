@@ -130,6 +130,7 @@ input{
     outline: none;
     border: 2.5px solid #2567da;
     color: #246be1;
+    background: #ecf3fe;
   }
 
 }
@@ -266,7 +267,7 @@ label{
             object-position: center;
             height: 3.5em;
           }
-        
+
 
       }
 
@@ -432,6 +433,7 @@ label{
     outline: none;
     border: 2.5px solid #2567da;
     color: #246be1;
+    background: #ecf3fe;
   }
 
   .card-image{ height: 1.75em; }
@@ -449,7 +451,8 @@ label{
       height: 95%;
       font-weight: 500;
       font-size: 1.05em;
-
+      background: transparent;
+      
       &:active,&:focus{
         font-weight: bold !important;
         color: #1b66e4;
