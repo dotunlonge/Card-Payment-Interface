@@ -113,6 +113,11 @@ form {
   width: 3em;
 }
 
+#divider{
+  font-weight: bolder;
+  font-size: 20px;
+  color: #1e2955;
+}
 
 input{
   height: 3.5em;
@@ -124,7 +129,7 @@ input{
   letter-spacing: 3px;
   font-weight: bold;
   text-align: center;
-  color: #232d4b;
+  color: #1e2955;
 
   &:active, &:focus{
     outline: none;
@@ -165,6 +170,7 @@ input{
   align-items: center;
   flex: 1;
   display: flex;
+  color: #1e2955;
 }
 
 label{
@@ -452,14 +458,16 @@ label{
       font-weight: 500;
       font-size: 1.05em;
       background: transparent;
+      letter-spacing: 1px;
+      font-weight: bold;
       
       &:active,&:focus{
-        font-weight: bold !important;
         color: #1b66e4;
       }
 
       &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
         color: #b5bbd0;
+        font-weight: 500 !important;
       }
 
     }
