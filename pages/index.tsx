@@ -282,7 +282,7 @@ const Home: NextPage = () => {
               <div className="xs-12 md-6 with-dial">
               <input
                 type="password"
-                placeholder={"xxxxxxxxx"}
+                placeholder={"●●●●●●●●"}
                 className="xs-12"
                 id="password"
                 value={password}
