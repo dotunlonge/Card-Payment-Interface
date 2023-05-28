@@ -1,0 +1,423 @@
+html, main, body, #__next {
+  background: white;
+  min-height: 100%;
+  width: 100%;
+  position: relative;
+  color: black;
+  padding: 1rem;
+}
+
+/* Hide clear icon on input */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button,
+input[type="password"]::-webkit-clear-button {
+  display: none;
+}
+
+input[type="number"]::-moz-inner-spin-button,
+input[type="number"]::-moz-outer-spin-button,
+input[type="password"]::-moz-clear-button {
+  display: none;
+}
+
+/* Hide dropdown arrow on select */
+select::-ms-expand {
+  display: none;
+}
+
+select::-webkit-contacts-auto-fill-button,
+select::-webkit-inner-spin-button,
+select::-webkit-search-cancel-button,
+select::-webkit-search-decoration,
+select::-webkit-search-results-button,
+select::-webkit-search-results-decoration {
+  display: none;
+}
+
+form {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  padding-top: 2rem;
+  .credit-card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .c-n{
+      label{
+         margin-top: 0 !important;
+       }
+    }
+  }
+}
+
+.time{
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  line-height: 0;
+
+  span{
+    color: white;
+    background: #1d2a54;
+    height: 2.5em;
+    width: 1.75em;
+    border-radius: 5px;
+    line-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.1em;
+    font-weight: bolder;
+    font-size: 15px;
+  }
+
+}
+
+.edit{
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  font-size: 17px;
+  color: #497dd8;
+  border: 0;
+  outline: none;
+  height: 17px;
+  background: white;
+  font-weight: bold;
+  letter-spacing: 1px;
+  .pen{
+    height: 1.2em;
+    object-fit: contain;
+    width: 1.3em;
+    margin-right: 0.5em;
+  }
+}
+
+.logo-part{
+  display: flex;
+  flex-direction: row;
+  line-height: 0;
+  align-items: center;
+  h2{
+    margin-left: 0.75em;
+  }
+}
+
+#logo{
+  height: 3em;
+  width: 3em;
+}
+
+
+input{
+  height: 3.5em;
+  border: 1px solid #eeedf0;
+  background: white;
+  border-radius: 7px;
+  padding: 0em 1em;
+  font-size: 20px;
+  letter-spacing: 3px;
+  font-weight: bold;
+  text-align: center;
+  color: #232d4b;
+
+  &:active, &:focus{
+    outline: none;
+    border: 2px solid #2567da;
+  }
+
+}
+
+.form-control{
+  margin: 1.35rem 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  span{
+    font-size: 15px;
+    color: #a8aebc;
+  }
+
+  span, label {
+    display: block;
+  }
+
+}
+
+#password{
+  text-align: left;
+}
+
+label{
+  font-weight: bolder;
+  margin: 0.5em 0;
+  color: #313b5c;
+  font-size: 1.15em;
+}
+
+.c-n{
+  label, span {
+    display: flex;
+    flex-direction: column;
+  }
+  span{
+    font-size: 15px;
+    color: #a8aebc;
+  }
+}
+
+.pay-now{
+  height: 3.7em;
+  border-radius: 5px;
+  color: white;
+  font-size: 20px;
+  font-weight: bolder;
+  background: #015ffe;
+  border: 0;
+  cursor: pointer;
+}
+
+.right{
+
+  height: 100%;
+
+  .blue{
+    height: 7px;
+    width: 75px;
+    display: flex;
+    background-color: blue;
+    box-shadow: 0px 18px 35px 0px #111;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+  }
+
+  .backcard-holder{
+    background: linear-gradient(180deg, #e1e7eb, #eff5f9);
+    float: left;
+    border-radius: 1em;
+    height: 92.5%;
+    top: 10%;
+    width: 100%;
+    position: absolute;
+  }
+
+  .card-holder{
+    margin-top: 2em;
+    float: left;
+    height: 100%;
+    width: 100%;
+    position: relative;
+
+    .card{
+
+      border: 1px solid #d7dee754;
+      padding: 1em 1.275em;
+      position: relative;
+      border-radius: 15px;
+      box-shadow: 4px 12px 15px 1px #d7dee754;
+      background: white;
+      margin: auto;
+      left: 0;
+      right: 0;
+      width: 80%;
+      height: 20em;
+      flex-direction: column;
+      justify-content: space-between;
+      display: flex;
+
+      .scannable-part{
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        display: flex;
+
+        #reader, #signal{
+          height: 3em;
+          object-fit: contain;
+        }
+
+      }
+
+      .card-content{
+        font-size: 15px;
+        .top{
+          p.one{
+            font-weight: 400;
+            margin: 0;
+          }
+          p.two{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            font-weight: bold;
+            font-size: 23px;
+            margin: 0;
+            margin-top: 0.5em;
+            span{
+              letter-spacing: 3.5px;
+              font-size: 9px;
+              margin-right: 1em;
+            }
+          }
+        }
+        .bottom{
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          margin: 1.2em 0 0;
+          p{
+            font-weight: bold;
+          }
+          img{
+            height: 35px;
+          }
+        }
+      }
+
+    }
+  }
+
+  .t-r{
+    text-align: right;
+  }
+
+  .payment-info{
+    position: relative;
+    margin: 2em auto 0;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    display: flex;
+  }
+
+  .info-control{
+    width: 80%;
+    margin: auto;
+    position: relative;
+    .info{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      img{
+        height: 1.5em;
+      }
+      p{
+        margin: 12px 0;
+      }
+      .l{
+        font-weight: 500;
+          color: #9aa0b2;
+      }
+      .b{
+        font-weight: bold;
+        color: #303956;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        display: flex;
+        img{
+          margin-right: 0.35em;
+        }
+      }
+    }
+  }
+
+}
+
+.to-pay{
+  position: relative;
+  z-index: 1;
+  margin: auto;
+  padding-left: 10%;
+  padding-right: 10%;
+  margin-top: 1.25em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  .bill{
+    height: 2.25em;
+    float: right;
+  }
+  label{
+    font-weight: 500;
+    color: #9aa0b2;
+    font-size: 15px;
+  }
+
+  .amount{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    h2{
+      font-size: 33px;
+      padding: 0.1em 0 0.2em;
+      margin: 0;
+      span{
+        font-size: 0.6em;
+      }
+    }
+    .cur{
+      color: #8690a6;
+    }
+    span{
+      font-size: 1.45em;
+      padding-right: 0.2em;
+    }
+  }
+}
+
+.total{
+  position: relative;
+  margin-top: 1.4em;
+  height: 1em;
+}
+
+.with-dial, .with-correct {
+  position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.dial, .correct {
+  height: 1.6em;
+  position: absolute;
+  right: 1em;
+}
+.bar{
+  border-top: 3px dashed #d3d9e0;
+  width: 100%;
+  height: 1em;
+  z-index: 2;
+  position: relative;
+}
+
+.circle{
+  height: 3em;
+  width: 3em;
+  position: relative;
+  background: white;
+  border-radius: 50%;
+  border: 0;
+  float: left;
+  left: -1.5em;
+  top: -1.4em;
+  z-index: 3;
+
+  &.r{
+    float: right;
+    left: 1.5em;
+    top: -2.5em;
+    right: 0;
+  }
+}
