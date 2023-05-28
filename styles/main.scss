@@ -87,9 +87,10 @@ form {
   border: 0;
   outline: none;
   height: 17px;
-  background: white;
+  background: transparent;
   font-weight: bold;
   letter-spacing: 1px;
+
   .pen{
     height: 1.2em;
     object-fit: contain;
@@ -119,7 +120,7 @@ form {
   color: #1e2955;
 }
 
-input{
+input {
   height: 3.5em;
   border: 1px solid #eeedf0;
   background: white;
@@ -130,14 +131,18 @@ input{
   font-weight: bold;
   text-align: center;
   color: #1e2955;
+}
 
-  &:active, &:focus{
+input:focus-visible {
+    outline: none;
+    background: transparent;
+}
+
+input:active, input:focus {
     outline: none;
     border: 2.5px solid #2567da;
     color: #246be1;
-    background: #ecf3fe;
-  }
-
+    background: transparent;
 }
 
 .form-control{
@@ -157,21 +162,29 @@ input{
 
 }
 
-#password {
-  text-align: left;
-  font-size: 35px;
-  height: 2em;
-}
-
-#password::placeholder {
-  text-align: left;
-  font-size: 24px;
+#password::placeholder, #password:-webkit-autofill::placeholder  {
   align-self: center;
   align-items: center;
-  flex: 1;
-  display: flex;
   color: #1e2955;
+  background: transparent !important;
+  text-align: center;
+  font-size: 30px !important;
 }
+
+input:-webkit-autofill{
+  -webkit-transition-delay: 9999s; /* Set a large delay */
+  transition-delay: 9999s; /* Set a large delay */
+}
+
+#password:active, #password:focus::placeholder {
+  transition-delay: 0s !important;
+    font-size: 20px !important;
+}
+
+input[data-autocompleted] {
+  background-color: transparent !important;
+}
+
 
 label{
   font-weight: bolder;
@@ -279,7 +292,7 @@ label{
       }
 
       .card-content{
-        font-size: 15px;
+        font-size: 17px;
         .top{
           p.one{
             font-weight: 400;
@@ -451,8 +464,8 @@ label{
     justify-content: center;
     flex-direction: row;
     background: transparent;
-    input{
 
+    input{
       padding: 0 0.25em;
       border: 0;
       height: 95%;
@@ -473,10 +486,6 @@ label{
 
     }
   }
-}
-
-input:focus-visible{
-  outline: none;
 }
 
 .dial, .correct {
