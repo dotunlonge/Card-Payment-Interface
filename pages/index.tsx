@@ -172,6 +172,7 @@ const Home: NextPage = () => {
                 value={cardNumber['input-1']}
                 onChange={handleCardNumberChange}
                 name="input-1"
+                id="cardNumber"
                 />
                 <span>-</span>
                 <input
@@ -234,7 +235,7 @@ const Home: NextPage = () => {
 
             <div className="form-control xs-12">
               <div className="xs-12 md-6">
-                <label htmlFor="">Expiry Date</label>
+                <label htmlFor="expiryMonth">Expiry Date</label>
                 <span>Enter the expiration date of the card</span>
               </div>
 
@@ -249,7 +250,7 @@ const Home: NextPage = () => {
                   name="expiryMonth"
                   value={expiryMonth.toString()}
                   onChange={handleMonthChange}
-                  id="month"
+                  id="expiryMonth"
                 />
                 <span className="xs-2 t-c" id='divider'>/</span>
                 <input
@@ -262,14 +263,14 @@ const Home: NextPage = () => {
                   name="expiryYear"
                   value={expiryYear.toString()}
                   onChange={handleYearChange}
-                  id="year"
+                  id="expiryYear"
                 />
               </div>
             </div>
 
             <div className="form-control xs-12">
               <div className="xs-12 md-6">
-                <label htmlFor="">Password</label>
+                <label htmlFor="password">Password</label>
                 <span>Enter your dynamic password</span>
               </div>
 
@@ -360,7 +361,7 @@ const Home: NextPage = () => {
 
             <div className="xs-12 to-pay">
               <div className='xs-9'>
-                <label>You have to Pay</label>
+                <span>You have to Pay</span>
                 <div className="amount">
                   <h2>549.<span>99</span></h2>
                   <span className="cur">USD</span>
