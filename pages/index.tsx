@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head'
 import Image from 'next/image'
-
-const MAX_CARD_NUMBER_LENGTH = 16; // Maximum number of characters for a credit card number
 
 const TimeDisplay: React.FC = () => {
   const [time, setTime] = useState<string>('00:00');
@@ -38,11 +36,79 @@ const TimeDisplay: React.FC = () => {
 
 const Home: NextPage = () => {
 
-  const [cardNumber, setCardNumber] = useState<number | string>(2412751234123456);
-  const [cvvNumber, setCvvNumber] = useState<number | string>(327);
-  const [expiryMonth, setExpiryMonth] = useState<number | string>("09");
-  const [expiryYear, setExpiryYear] = useState<number | string>(22);
-  const [password, setPassword] = useState<string>("");
+  const [cardType, setCardType] = useState<string>('credit-card');
+ const inputRefs = useRef<Array<HTMLInputElement | null>>([]);
+ const [cardNumber, setCardNumber] = useState<{ [key: string]: string }>({
+   'input-1': '',
+   'input-2': '',
+   'input-3': '',
+   'input-4': '',
+ });
+ const [cvvNumber, setCvvNumber] = useState<string>('327');
+ const [expiryMonth, setExpiryMonth] = useState<string>('09');
+ const [expiryYear, setExpiryYear] = useState<string>('22');
+ const [password, setPassword] = useState<string>('');
+
+ // Function to detect the card type based on the input
+ const detectCardType = (input: string) => {
+   const cardTypes = [
+     {
+       type: 'visa',
+       pattern: /^4/,
+     },
+     {
+       type: 'mastercard',
+       pattern: /^5[1-5]/,
+     },
+     {
+       type: 'amex',
+       pattern: /^3[47]/,
+     },
+     {
+       type: 'discover',
+       pattern: /^6(?:011|5)/,
+     },
+     // Add more card types and patterns as needed
+   ];
+
+   for (const card of cardTypes) {
+     if (card.pattern.test(input)) {
+       return card.type;
+     }
+   }
+
+   return 'credit-card';
+ };
+
+ // Event handler for card number input change
+ const handleCardNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+   const { name, value } = e.target;
+   if (name === 'input-1') setCardType(detectCardType(value));
+   handleInputChange(e);
+ };
+
+ // Event handler for general input change
+ const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+   const { name, value } = e.target;
+   const input = value.replace(/\D/g, '').slice(0, 4); // Limit the input to 4 characters
+   setCardNumber((prevCardNumber) => ({ ...prevCardNumber, [name]: input }));
+   if (input.length === 4) focusNextInput(e.target);
+ };
+
+ // Function to focus on the next input
+  const focusNextInput = (currentInput: HTMLInputElement | null) => {
+   if (currentInput) {
+     const { maxLength, value } = currentInput;
+     if (value.length === Number(maxLength)) {
+       const nextInput = currentInput.nextElementSibling as HTMLInputElement;
+       if (nextInput) nextInput.focus();
+     }
+   }
+  };
+
+  useEffect(() => {
+   inputRefs.current = inputRefs.current.slice(0, 4); // Limit the number of input refs to 4
+  }, []);
 
   const handlePayment = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -57,9 +123,22 @@ const Home: NextPage = () => {
     console.log('Form Data:', formData);
   };
 
-  const handleCardNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const input = e.target.value.slice(0, MAX_CARD_NUMBER_LENGTH); // Limit the input to the maximum card number length
-    setCardNumber(input);
+  const handleCVVNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const input = e.target.value.slice(0, 3); // Limit the input to the maximum card cvv number length
+    setCvvNumber(input);
+  };
+
+  const handleMonthChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const input = e.target.value.slice(0, 2); // Limit the input to the maximum card month number length
+    setExpiryMonth(input.toString().padStart(2, '0'));
+  };
+
+  const handleYearChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const input = e.target.value.slice(0, 2); // Limit the input to the maximum card year number length
+    setExpiryYear(input.toString().padStart(2, '0'));
   };
 
   return (
@@ -85,7 +164,7 @@ const Home: NextPage = () => {
 
             <div className='credit-card xs-12'>
               <div className='c-n'>
-                <label htmlFor="">Card Number</label>
+                <label htmlFor="cardNumber">Card Number</label>
                 <span>Enter the 16-digit card number on the card</span>
               </div>
                 <button className="edit">
@@ -93,21 +172,62 @@ const Home: NextPage = () => {
                   Edit
                 </button>
             </div>
-            
+
             <div className="form-control xs-12 with-correct">
-             <input
-               type="text"
-               className="xs-12"
-               placeholder={cardNumber.toString()}
-               value={cardNumber.toString()}
-               onChange={handleCardNumberChange}
-             />
-             <img src="/correct.png" alt="check" className="correct" />
-           </div>
+              <div className="xs-2 sm-1">
+                <img alt="card" src={`/${cardType}.png`} className="card-image" />
+              </div>
+              <div className="xs-9 sm-6 fields">
+              <input
+                ref={(ref) => (inputRefs.current[0] = ref)}
+                type="number"
+                className="xs-3"
+                maxLength={4}
+                placeholder="2412"
+                value={cardNumber['input-1']}
+                onChange={handleCardNumberChange}
+                name="input-1"
+                />
+                <span>-</span>
+                <input
+                  ref={(ref) => (inputRefs.current[1] = ref)}
+                  type="number"
+                  className="xs-3"
+                  maxLength={4}
+                  placeholder="7512"
+                  value={cardNumber['input-2']}
+                  onChange={handleInputChange}
+                  name="input-2"
+                />
+                <span>-</span>
+                <input
+                  ref={(ref) => (inputRefs.current[2] = ref)}
+                  type="number"
+                  className="xs-3"
+                  maxLength={4}
+                  placeholder="3412"
+                  value={cardNumber['input-3']}
+                  onChange={handleInputChange}
+                  name="input-3"
+                />
+                <span>-</span>
+                <input
+                  ref={(ref) => (inputRefs.current[3] = ref)}
+                  type="number"
+                  className="xs-3"
+                  maxLength={4}
+                  placeholder="3456"
+                  value={cardNumber['input-4']}
+                  onChange={handleInputChange}
+                  name="input-4"
+                />
+              </div>
+                <img src="/correct.png" alt="check" className="correct" />
+            </div>
 
             <div className="form-control xs-12">
               <div className="xs-12 md-6">
-                <label htmlFor="">CVV Number</label>
+                <label htmlFor="cvvNumber">CVV Number</label>
                 <span>Enter the 3 or 4 digit number on the card</span>
               </div>
 
@@ -116,9 +236,11 @@ const Home: NextPage = () => {
                     type="number"
                     placeholder={cvvNumber.toString()}
                     className="xs-12"
+                    id="cvvNumber"
                     min={1}
+                    maxLength={3}
                     value={cvvNumber.toString()}
-                    onChange={(e) => setCvvNumber(e.target.value)}
+                    onChange={handleCVVNumberChange}
                   />
                   <img src="/dial.png" alt='dial' className="dial" />
               </div>
@@ -138,16 +260,16 @@ const Home: NextPage = () => {
                   max={12}
                   min={1}
                   value={expiryMonth.toString()}
-                  onChange={(e) => setExpiryMonth(e.target.value)}
+                  onChange={handleMonthChange}
                 />
                 <span className="xs-2 t-c">/</span>
                 <input
                   type="number"
-                  placeholder={expiryYear.toString()}
+                  placeholder={expiryYear}
                   className="xs-5"
                   min={1}
                   value={expiryYear.toString()}
-                  onChange={(e) => setExpiryYear(e.target.value)}
+                  onChange={handleYearChange}
                 />
               </div>
             </div>
@@ -192,7 +314,7 @@ const Home: NextPage = () => {
 
                 <div className="top">
                   <p className="one">Jonathan Michael</p>
-                  <p className="two"><span>●●●●</span> {cardNumber.toString().slice(-4)}</p>
+                  <p className="two"><span>●●●●</span> {cardNumber["input-4"]}</p>
                 </div>
 
                 <div className="bottom">
@@ -262,4 +384,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default Home;
