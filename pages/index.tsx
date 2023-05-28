@@ -45,7 +45,7 @@ const Home: NextPage = () => {
    'input-4': '',
  });
  const [cvvNumber, setCvvNumber] = useState<string>('327');
- const [expiryMonth, setExpiryMonth] = useState<number | string>('09');
+ const [expiryMonth, setExpiryMonth] = useState<number | string>('10');
  const [expiryYear, setExpiryYear] = useState<number | string>('22');
  const [password, setPassword] = useState<string>('');
 
@@ -92,19 +92,7 @@ const Home: NextPage = () => {
    const { name, value } = e.target;
    const input = value.replace(/\D/g, '').slice(0, 4); // Limit the input to 4 characters
    setCardNumber((prevCardNumber) => ({ ...prevCardNumber, [name]: input }));
-   if (input.length === 4) focusNextInput(e.target);
  };
-
- // Function to focus on the next input
-  const focusNextInput = (currentInput: HTMLInputElement | null) => {
-   if (currentInput) {
-     const { maxLength, value } = currentInput;
-     if (value.length === Number(maxLength)) {
-       const nextInput = currentInput.nextElementSibling as HTMLInputElement;
-       if (nextInput) nextInput.focus();
-     }
-   }
-  };
 
   useEffect(() => {
    inputRefs.current = inputRefs.current.slice(0, 4); // Limit the number of input refs to 4
@@ -234,6 +222,7 @@ const Home: NextPage = () => {
                     placeholder={cvvNumber.toString()}
                     className="xs-12"
                     id="cvvNumber"
+                    name="cvvNumber"
                     min={1}
                     maxLength={3}
                     value={cvvNumber.toString()}
@@ -256,6 +245,8 @@ const Home: NextPage = () => {
                   className="xs-5"
                   max={12}
                   min={1}
+                  maxLength={2}
+                  name="expiryMonth"
                   value={expiryMonth.toString()}
                   onChange={handleMonthChange}
                   id="month"
@@ -266,6 +257,9 @@ const Home: NextPage = () => {
                   placeholder={"22"}
                   className="xs-5"
                   min={1}
+                  minLength={2}
+                  maxLength={2}
+                  name="expiryYear"
                   value={expiryYear.toString()}
                   onChange={handleYearChange}
                   id="year"
@@ -285,8 +279,9 @@ const Home: NextPage = () => {
                 placeholder={"●●●●●●●●"}
                 className="xs-12"
                 id="password"
+                name="password"
                 value={password}
-                maxLength={20}
+                maxLength={16}
                 onChange={(e) => setPassword(e.target.value)}
                 />
                 <img src="/dial.png" alt='dial' className="dial" />
@@ -318,7 +313,7 @@ const Home: NextPage = () => {
                 </div>
 
                 <div className="bottom">
-                 <p>{expiryMonth}/{expiryYear}</p>
+                 <p>{expiryMonth.padStart(2, '0')}/{expiryYear.padStart(2, '0')}</p>
                  <img src="/mastercard.png" alt="mastercard" />
                </div>
 
@@ -358,9 +353,9 @@ const Home: NextPage = () => {
             </div>
 
             <div className='xs-12 total'>
-              <button className="circle"/>
+              <span className="circle"></span>
               <div className="bar"/>
-              <button className="circle r"/>
+              <span className="circle r"></span>
             </div>
 
             <div className="xs-12 to-pay">
